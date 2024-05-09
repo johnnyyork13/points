@@ -1,36 +1,20 @@
 import {useState, useEffect} from 'react';
+import { setGlobalUser } from '../state/user/userSlice';
+import {useDispatch, useSelector} from "react-redux";
 import styled from 'styled-components';
 import Graph from './Graph';
 import Pending from './Pending';
 
 export default function Home(props) {
 
-    const testUser = {
-        name: "Johnny",
-        points: 100,
-        pending: [
-            {
-                name: "test",
-                id: 1,
-                points: 10
-            },
-            {
-                name: "test",
-                id: 2,
-                points: 20
-            },
-            {
-                name: "test",
-                id: 3,
-                points: 30
-            }
-        ]
-    }
+    const globalUser = useSelector((state) => state.user);
+
+    console.log(globalUser);
 
     return (
         <HomeContainer>
-            <Graph user={testUser}/>
-            <Pending user={testUser}/>
+            <Graph user={globalUser} url={props.url}/>
+            {/* <Pending user={globalUser}/> */}
         </HomeContainer>
     )
 }
